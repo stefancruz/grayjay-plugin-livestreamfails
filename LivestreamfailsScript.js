@@ -293,7 +293,6 @@ function clipToPlatformVideo(clip) {
         author: streamerToAuthorLink(clip.streamer),
         datetime: isoToUnixSeconds(clip.createdAt),
         duration: 0,
-        viewCount: clip.redditScore ?? 0,
         url: `${WEB_CLIP_PREFIX}${clip.id}`,
         isLive: false
     });
@@ -318,7 +317,6 @@ function clipToPlatformVideoDetails(clip) {
     const descParts = [];
     if (clip.category?.label) descParts.push(`Category: ${clip.category.label}`);
     if (clip.sourceLink) descParts.push(`Source: ${clip.sourceLink}`);
-    if (typeof clip.redditScore === "number") descParts.push(`Reddit score: ${clip.redditScore}`);
     if (clip.isNSFW) descParts.push("NSFW");
 
     const details = new PlatformVideoDetails({
@@ -328,7 +326,7 @@ function clipToPlatformVideoDetails(clip) {
         author: streamerToAuthorLink(clip.streamer),
         datetime: isoToUnixSeconds(clip.createdAt),
         duration: 0,
-        viewCount: clip.redditScore ?? 0,
+        rating: new RatingLikes(clip.redditScore ?? 0),
         url: shareUrl,
         shareUrl,
         isLive: false,
