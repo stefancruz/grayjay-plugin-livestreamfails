@@ -1,0 +1,110 @@
+{
+  "id": "c2d9a1b4-7f3e-4c1f-ae7b-2e6b0f9a5c42",
+  "name": "Livestreamfails",
+  "description": "Watch your favorite Streamers fail!",
+  "version": 1,
+  "author": "Stefan Cruz",
+  "authorUrl": "",
+  "platformUrl": "https://livestreamfails.com",
+  "repositoryUrl": "https://github.com/stefancruz/grayjay-plugin-livestreamfails",
+  "sourceUrl": "https://stefancruz.github.io/grayjay-plugin-livestreamfails/LivestreamfailsConfig.json",
+  "scriptUrl": "./LivestreamfailsScript.js",
+  "iconUrl": "./LivestreamfailsIcon.png",
+  "packages": [
+    "Http"
+  ],
+  "packagesOptional": [
+    "HttpImp"
+  ],
+  "allowEval": false,
+  "allowUrls": [
+    "livestreamfails.com",
+    "api.livestreamfails.com",
+    "media-prod.livestreamfails.com",
+    "cdn.livestreamfails.com"
+  ],
+  "captcha": {
+    "userAgent": null,
+    "captchaUrl": null,
+    "cookiesToFind": [
+      "cf_clearance"
+    ]
+  },
+  "captchaDesktop": {
+    "userAgent": null,
+    "captchaUrl": null,
+    "cookiesToFind": [
+      "cf_clearance"
+    ],
+    "useMobileEmulation": false
+  },
+  "constants": {
+    "BASE_URL": "https://livestreamfails.com"
+  },
+  "settings": [
+    {
+      "variable": "FeedHeader",
+      "name": "Feed",
+      "description": "Configure how clips are filtered in feeds.",
+      "type": "Header"
+    },
+    {
+      "variable": "minScoreIndex",
+      "name": "Minimum Reddit score",
+      "description": "Only show clips with at least this Reddit score. Higher values mean fewer, more popular clips.",
+      "type": "Dropdown",
+      "default": "0",
+      "options": [
+        "Off",
+        "100",
+        "250",
+        "500",
+        "1000",
+        "2500"
+      ]
+    },
+    {
+      "variable": "ExperimentalHeader",
+      "name": "Experimental",
+      "description": "Features that are still being tested.",
+      "type": "Header"
+    },
+    {
+      "variable": "enableBrowserImpersonation",
+      "name": "Browser Impersonation",
+      "description": "Impersonate a browser's TLS fingerprint to bypass bot detection (e.g. Cloudflare).",
+      "type": "Boolean",
+      "default": "false"
+    }
+  ],
+  "changelog": {
+    "1": [
+      "Initial implementation;",
+      "Fix: Default search/channel sort to newest content;",
+      "Fix: Home feed now returns all new clips (matches /new), not just high-score ones;",
+      "Improvement: Add 'Minimum Reddit score' plugin setting (Dropdown) to optionally filter feeds; default Off;"
+    ]
+  },
+  "testing": {
+    "GetContentDetails": {
+      "urls": [
+        "https://livestreamfails.com/clip/179549"
+      ]
+    },
+    "GetChannel": {
+      "urls": [
+        "https://livestreamfails.com/streamer/3732"
+      ]
+    },
+    "GetChannelContents": {
+      "urls": [
+        "https://livestreamfails.com/streamer/3732"
+      ]
+    },
+    "Search": {
+      "queries": [
+        "xqc"
+      ]
+    }
+  }
+}
